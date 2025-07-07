@@ -43,11 +43,11 @@ def main():
         with open("outputs/output.txt","w") as f:
             f.write(cleaned_text)
             if args.summarize:
-                f.write("\n\n 📝 Meeting Summary: \n")
+                f.write("\n\n Meeting Summary: \n")
                 f.write("- Key Points: \n")
                 for point in summary["key_points"]:
                     f.write(f" - {point}\n")
-                print("\n - Action Items: \n")
+                f.write("\n - Action Items: \n")
                 for action in summary["action_items"]:
                     f.write(f"- {action}\n")
     
