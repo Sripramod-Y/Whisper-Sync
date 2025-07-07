@@ -5,13 +5,19 @@ import json
 def export_txt(summary: dict, output_path: str) -> None:
     """ Export summary to plain text file """
     with open(output_path, "w") as f:
-        f.write("Meeting Summary\n")
-        f.write("\nKey Points:\n")
-        for point in summary["key_points"]:
-            f.write(f"- {point}\n")
-        f.write("\nAction Items:\n")
-        for action in summary["action_items"]:
-            f.write(f"- {action}\n")
+        # Transcript
+        f.write("=== MEETING TRANSCRIPT ===\n")
+        f.write("\n".join(summary["chunks"]) + "\n\n")
+
+        # Summary
+        f.write("=== KEY POINTS ===")
+        f.write("\n".join(f" - {point} " for point in summary["key_points"]) + "\n\n")
+
+        # Action Items 
+        f.write(" === ACTION ITEMS ===\n")
+        f.write("\n".join(f"- {action}" for action in summary["action_items"]) + "\n\n")
+
+
 
 def export_pdf(summary: dict, output_path: str) -> None:
     """ Generate pdf from a text """

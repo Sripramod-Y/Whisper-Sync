@@ -8,6 +8,7 @@ from utils.summarizer import extract_keyphrases, find_action_items
 from utils.exporters import export_txt
 from utils.exporters import export_html
 from utils.exporters import export_pdf
+from utils.gcs_utils import upload_to_gcs
 
 def main():
     parser = argparse.ArgumentParser()
@@ -16,13 +17,23 @@ def main():
     parser.add_argument("--summarize", help = "Enable smart summarization", action = "store_true")
     parser.add_argument("--format", help = "Output format (txt/html/pdf)", default = "pdf")
     parser.add_argument("--export_dir", help = "Custom output directory")
+    parser.add_argument("--long", help = "Use long_running_recognise (for > 1min files)", action = "store_true")
+    parser.add_argument("--gcs_bucket", help = "GCS Bucket name (required for long files)", default = None)
     args = parser.parse_args()
 
-    # Preprocess audio
-    processed_audio = resample_audio(args.input)
-
-    # Transcribe using Google SST 
-    raw_transcript = transcribe_audio(processed_audio)
+    if args.long and not args.gcs_bucket:
+        raise ValueError("--gcs_bucket required for long files")
+    
+    # Preprocess audio and Generate Transcript
+    if args.long:
+        processed_audio = resample_audio(args.input)
+        gcs_uri = upload_to_gcs(processed_audio, args.gcs_bucket)
+        raw_transcript = transcribe_audio(audio_path=None, is_long_file = True, gcs_uri = gcs_uri)
+    else : 
+        processed_audio = resample_audio(args.input)
+        raw_transcript = transcribe_audio(processed_audio)
+    
+    # Clean the received raw transcript 
     cleaned_text = clean_transcript(raw_transcript["text"])
 
     summary = None
@@ -40,12 +51,13 @@ def main():
             json.dump(summary, f, indent = 2)
 
         # Export summary
+        export_dir = args.export_dir or "outputs"
         if args.format == "pdf":
-            export_pdf(summary, f"{args.export_dir}/summaries/summary.pdf")
+            export_pdf(summary, f"{export_dir}/summaries/summary.pdf")
         elif args.format == "html":
-            export_html(summary, f"{args.export_dir}/summaries/summary.html")
+            export_html(summary, f"{export_dir}/summaries/summary.html")
         else:
-            export_txt(summary, f"{args.export_dir}/summaries/summary.txt")
+            export_txt(summary, f"{export_dir}/summaries/summary.txt")
 
     # Save raw and clean transcript 
     if args.output == "json":
