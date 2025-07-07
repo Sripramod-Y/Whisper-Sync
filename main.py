@@ -75,6 +75,40 @@ def main():
                 for action in summary["action_items"]:
                     f.write(f"- {action}\n")
     
+# Add this function to make core functionality importable
+def process_audio(input_path: str, summarize: bool = False, long_file: bool = False, gcs_bucket: str = None) -> dict:
+    """Unified processing function for both CLI and UI"""
+    from utils.audio_utils import resample_audio
+    from utils.sst_client import transcribe_audio
+    from utils.text_cleaner import clean_transcript
+    from utils.summarizer import extract_keyphrases, find_action_items
+    
+    # Processing pipeline
+    processed_audio = resample_audio(input_path)
+    if long_file:
+        from utils.gcs_utils import upload_to_gcs
+        gcs_uri = upload_to_gcs(processed_audio, gcs_bucket)
+        raw_transcript = transcribe_audio(processed_audio, is_long_file=True, gcs_uri=gcs_uri)
+    else:
+        raw_transcript = transcribe_audio(processed_audio)
+    
+    cleaned_text = clean_transcript(raw_transcript["text"])
+    
+    result = {"transcript": cleaned_text, "words": raw_transcript["words"]}
+    
+    if summarize:
+        chunks = chunk_by_pauses(raw_transcript)
+        result.update({
+            "summary": {
+                "key_points": extract_keyphrases(cleaned_text),
+                "action_items": find_action_items(cleaned_text),
+                "chunks" : chunks
+            }
+        })
+    
+    return result
+
+
 
 if __name__ == "__main__":
     main()
