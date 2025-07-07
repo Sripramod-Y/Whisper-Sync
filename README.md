@@ -48,7 +48,7 @@ pip install -r requirements.txt
 - Place your `google-key.json` in the project root.
 - Set the environment variable:
   ```bash
-  export GOOGLE_APPLICATION_CREDENTIALS="google-key.json"
+  $env: GOOGLE_APPLICATION_CREDENTIALS="google-key.json"
   ```
 
 ### 3. **Run the App**
@@ -94,7 +94,7 @@ python main.py --input path/to/audio.wav --output txt --summarize --format pdf
 
 ## 🧠 Innovation Highlights
 
-- **Speaker-aware formatting** and pause-based chunking for human-like transcripts.
+- **Timing aware** and pause-based chunking for human-like transcripts.
 - **Action item mining** using trigger phrase detection and NLP.
 - **One-click export** to professional PDF/HTML for sharing.
 - **Dark-themed, modern UI** with real-time feedback and future-ready for analytics.
