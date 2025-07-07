@@ -1,0 +1,153 @@
+{
+  "raw": {
+    "text": "of the 2025 at exactly 6 PM mayor Patrick Tyrion all council is present councilor fuel councilors kazinsky Miller and Warren uh and then we'll start into the uh",
+    "words": [
+      {
+        "word": "of",
+        "start": 0.0,
+        "end": 0.5
+      },
+      {
+        "word": "the",
+        "start": 0.5,
+        "end": 0.7
+      },
+      {
+        "word": "2025",
+        "start": 0.7,
+        "end": 1.2
+      },
+      {
+        "word": "at",
+        "start": 1.2,
+        "end": 1.6
+      },
+      {
+        "word": "exactly",
+        "start": 1.6,
+        "end": 1.8
+      },
+      {
+        "word": "6",
+        "start": 1.8,
+        "end": 2.7
+      },
+      {
+        "word": "PM",
+        "start": 2.7,
+        "end": 2.8
+      },
+      {
+        "word": "mayor",
+        "start": 2.8,
+        "end": 4.0
+      },
+      {
+        "word": "Patrick",
+        "start": 4.0,
+        "end": 4.3
+      },
+      {
+        "word": "Tyrion",
+        "start": 4.3,
+        "end": 5.1
+      },
+      {
+        "word": "all",
+        "start": 5.1,
+        "end": 5.7
+      },
+      {
+        "word": "council",
+        "start": 5.7,
+        "end": 6.1
+      },
+      {
+        "word": "is",
+        "start": 6.1,
+        "end": 6.4
+      },
+      {
+        "word": "present",
+        "start": 6.4,
+        "end": 6.5
+      },
+      {
+        "word": "councilor",
+        "start": 6.5,
+        "end": 7.5
+      },
+      {
+        "word": "fuel",
+        "start": 7.5,
+        "end": 8.0
+      },
+      {
+        "word": "councilors",
+        "start": 8.0,
+        "end": 9.5
+      },
+      {
+        "word": "kazinsky",
+        "start": 9.5,
+        "end": 10.0
+      },
+      {
+        "word": "Miller",
+        "start": 10.0,
+        "end": 10.6
+      },
+      {
+        "word": "and",
+        "start": 10.6,
+        "end": 11.0
+      },
+      {
+        "word": "Warren",
+        "start": 11.0,
+        "end": 11.7
+      },
+      {
+        "word": "uh",
+        "start": 11.7,
+        "end": 12.6
+      },
+      {
+        "word": "and",
+        "start": 12.6,
+        "end": 12.8
+      },
+      {
+        "word": "then",
+        "start": 12.8,
+        "end": 12.8
+      },
+      {
+        "word": "we'll",
+        "start": 12.8,
+        "end": 13.1
+      },
+      {
+        "word": "start",
+        "start": 13.1,
+        "end": 13.4
+      },
+      {
+        "word": "into",
+        "start": 13.4,
+        "end": 13.8
+      },
+      {
+        "word": "the",
+        "start": 13.8,
+        "end": 14.0
+      },
+      {
+        "word": "uh",
+        "start": 14.0,
+        "end": 14.7
+      }
+    ]
+  },
+  "cleaned": "of the 2025 at exactly 6 PM mayor Patrick Tyrion all council is present councilor fuel councilors kazinsky Miller and Warren   and then we'll start into the"
+}
